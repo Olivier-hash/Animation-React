@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [items, setItems] = useState(["Learn React"]);
+
+  const addItem = () => {
+    setItems([...items, `New Item ${Date.now()}`]);
+  };
+
+  const removeItem = (index) => {
+    setItems(items.filter((_, i) => i !== index));
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app">
+      <button onClick={addItem}>Add Item</button>
+      <TransitionGroup className="list">
+        {items.map((item, index) => (
+          <CSSTransition key={item} timeout={300} classNames="fade">
+            <div className="list-item" onClick={() => removeItem(index)}>
+              {item}
+            </div>
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
+    </div>
+  );
 }
 
-export default App
+export default App;

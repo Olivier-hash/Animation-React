@@ -1,0 +1,36 @@
+.app {
+    padding: 2rem;
+  }
+  
+  .list {
+    margin-top: 1rem;
+  }
+  
+  .list-item {
+    background: #f0f0f0;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  /* Fade Animations */
+  .fade-enter {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  .fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 300ms ease-in;
+  }
+  .fade-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-exit-active {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 300ms ease-in;
+  }
+  
